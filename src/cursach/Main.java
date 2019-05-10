@@ -70,8 +70,47 @@ public class Main
 
         long startTime = System.nanoTime();
 
+        IntStream.range(0,W_x_t.length).parallel().forEach(i-> W_x_t[i][0] = func(i*h,0));
+
+        IntStream.range(0,W_x_t[0].length).parallel().forEach(i->{
+            W_x_t[0][i] = func(0,i*Tau);
+            W_x_t[W_x_t.length-1][i] = func(1,i*Tau);
+        });
+
+        for (int k = 0; k < W_x_t[0].length-1; k++) {
+            int finalK = k;
+            IntStream.range(1, W_x_t.length - 1).parallel().forEach((i) -> W_x_t[i][finalK + 1] = nextIter(i, finalK));
+        }
+
+        long endTime   = System.nanoTime();
+        long totalTime = endTime - startTime;
+
+        FileWriter file1 = new FileWriter("test2.txt");
+
+        double AbsoluteAccuracyParallel = 0;
+        double RelativeAccuracyParallel = 0;
+
+        file1.write("ListPlot3D[{"+"{"+(0.0)+","+(0.0)+","+W_x_t[0][0]+"}");
+
+        for(int i=0;i<W_x_t.length;i++){
+            for(int j=1;j<W_x_t[0].length;j++){
+                file1.write( ",{" + ( i*h) + "," + ( j*Tau) + "," + W_x_t[i][j] + "}");
+                if(AbsoluteAccuracyParallel < Math.abs(W_x_t[i][j]-func(i*h,j*Tau))){
+                    AbsoluteAccuracyParallel = Math.abs(W_x_t[i][j]-func(i*h,j*Tau));
+                    RelativeAccuracyParallel = AbsoluteAccuracyParallel/W_x_t[i][j]*100;
+                }
+            }
+
+        }
+
+        file1.write("}, Mesh -> All]");
+        file1.close();
+
         System.out.println("Час роботи програми(послідовно): " + timeSerialSpent + " наносекунд");
+        System.out.println("Час роботи програми(паралельно): " + totalTime + " наносекунд");
         System.out.println("Абсолютна похибка послідовних обчислень: "+ AbsoluteAccuracySerial);
         System.out.println("Відносна похибка послідовних обчислень: "+ RelativeAccuracySerial);
+        System.out.println("Абсолютна похибка паралельних обчислень: "+ AbsoluteAccuracyParallel);
+        System.out.println("Відносна похибка паралельних обчислень: "+ RelativeAccuracyParallel);
     }
 }
