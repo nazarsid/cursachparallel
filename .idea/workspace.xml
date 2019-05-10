@@ -15,8 +15,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/cursach/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="640">
-              <caret line="108" column="98" lean-forward="true" selection-start-line="108" selection-start-column="98" selection-end-line="108" selection-end-column="98" />
+            <state relative-caret-position="960">
+              <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -265,8 +265,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/cursach/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="108" column="98" lean-forward="true" selection-start-line="108" selection-start-column="98" selection-end-line="108" selection-end-column="98" />
+        <state relative-caret-position="960">
+          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
