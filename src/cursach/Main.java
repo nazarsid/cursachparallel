@@ -15,7 +15,9 @@ public class Main
 
     static double h = (double) 1/w_X;
     static double Tau = (double) Math.pow(h,2)*(0.1);
+
     static double[][] W_x_t = new double[w_X][w_T];
+
     static double func(double x, double t){
         return  Math.pow(Math.pow(x-A,2)/(6*a*(B-t)),2);
     }
